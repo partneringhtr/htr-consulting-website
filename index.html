@@ -10,6 +10,7 @@
 <meta name="author" content="HTR Consulting LLC">
 <link rel="canonical" href="https://www.htrconsultingllc.com/">
 <meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="SVW-NHAiwGSzePV_lcsNdqZviffXKz_dLvuWDStPLO4" />
 <!-- Open Graph / social -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HTR Consulting">
@@ -662,7 +663,6 @@
   <span>US & UK Operations</span>
 </div>
 <script>
-  // Contact form → mailto
   function sendEmail() {
     const name    = document.querySelector('input[placeholder="Your name"]').value.trim();
     const company = document.querySelector('input[placeholder="Optional"]').value.trim();
@@ -681,7 +681,6 @@
     );
     window.location.href = 'mailto:partnering@htrconsultingllc.com?subject=' + subject + '&body=' + body;
   }
-  // Team bios
   const bios = [
     {
       name: "Herbert J. Tweddle",
@@ -721,7 +720,6 @@
     panel.classList.add('active');
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
-  // Scroll animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) {
