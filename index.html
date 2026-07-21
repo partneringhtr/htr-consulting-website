@@ -198,6 +198,38 @@
     transition: gap 0.2s, color 0.2s;
   }
   .hero-cta:hover { gap: 20px; color: var(--red2); }
+  .hero-fork {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .fork-btn {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 18px 26px;
+    min-width: 220px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+  .fork-btn:hover {
+    border-color: var(--red);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-2px);
+  }
+  .fork-btn-label {
+    color: var(--white);
+    font-size: 15px; letter-spacing: 0.3px;
+  }
+  .fork-btn-sub {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    transition: color 0.25s;
+  }
+  .fork-btn:hover .fork-btn-sub { color: var(--red2); }
+  @media (max-width: 700px) {
+    .hero-fork { flex-direction: column; gap: 12px; }
+    .fork-btn { min-width: 0; width: 100%; }
+  }
   .hero-stat-row {
     position: absolute; right: 5%; bottom: 8%;
     display: flex; flex-direction: column; gap: 32px;
@@ -495,10 +527,19 @@
 <section id="home">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-eyebrow fade-up">Mining & Physical Commodities Consulting</div>
-  <h1 class="fade-up">Connecting<br><em>Growth</em></h1>
-  <p class="hero-sub fade-up">Trade intermediation, finance, and business consulting for the physical commodities world.</p>
-  <a class="hero-cta fade-up" href="#overview">Discover Our Work →</a>
+  <div class="hero-eyebrow fade-up">Mining &amp; Physical Commodities &middot; US &amp; UK</div>
+  <h1 class="fade-up">Trade Finance Advisory<br>for the <em>Physical Commodities</em> World</h1>
+  <p class="hero-sub fade-up">We work with producers, processors, and trading firms on how their trade flows are financed &mdash; and introduce capital providers to operators in metals and mining. Advisory and introductions only.</p>
+  <div class="hero-fork fade-up">
+    <a class="fork-btn" href="#for-operators">
+      <span class="fork-btn-label">I'm an operator</span>
+      <span class="fork-btn-sub">Seeking capital &rarr;</span>
+    </a>
+    <a class="fork-btn" href="#for-capital">
+      <span class="fork-btn-label">I'm a capital provider</span>
+      <span class="fork-btn-sub">Seeking dealflow &rarr;</span>
+    </a>
+  </div>
   <div class="hero-stat-row fade-up">
     <div>
       <div class="hero-stat-num">100+</div>
@@ -554,12 +595,12 @@
   <div class="section-label fade-up">Services</div>
   <h2 class="fade-up">What We Do</h2>
   <div class="services-grid fade-up">
-    <div class="service-card">
+    <div class="service-card" id="for-operators">
       <div class="service-icon">⬡</div>
       <h3>Business Consulting</h3>
       <p>We advise mining companies, physical commodities manufacturers, and trading firms — particularly those operating across emerging market jurisdictions — on structuring their trade finance and working capital arrangements. Our approach is diagnostic: we assess each client's specific trade flows, counterparty relationships, and capital constraints, then identify financing structures that are appropriate to their operational reality. We make introductions to financiers with genuine sector expertise, not generalist lenders unfamiliar with commodities dynamics.</p>
     </div>
-    <div class="service-card">
+    <div class="service-card" id="for-capital">
       <div class="service-icon">◈</div>
       <h3>Financing Introductions &amp; Alternative Capital</h3>
       <p>For capital providers — family offices, private credit funds, and specialist lenders — seeking exposure to the mining and physical commodities space, HTR serves as a discreet point of introduction to operators and projects aligned with their mandate. Our value lies in the quality and depth of our relationships on both sides of the transaction. We do not act as placement agents or broker-dealers; our role is to facilitate meaningful introductions between credible counterparties, grounded in a substantive understanding of the sector and its risk dynamics.</p>
@@ -608,7 +649,7 @@
       <p>Do you have a challenge that needs addressing, seek a tailored solution, or wish to explore potential partnerships? Please don't hesitate to reach out — we will respond promptly to discuss how we can assist you further.</p>
       <div class="contact-detail">
         <span class="contact-detail-label">Email</span>
-        <span class="contact-detail-val">info@htrconsultingllc.com</span>
+        <span class="contact-detail-val">partnering@htrconsultingllc.com</span>
       </div>
       <div class="contact-detail">
         <span class="contact-detail-label">Offices</span>
