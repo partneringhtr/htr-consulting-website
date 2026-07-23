@@ -135,16 +135,16 @@
     display: flex; gap: 36px; list-style: none;
   }
   .nav-links a {
-    color: var(--white40); text-decoration: none;
+    color: rgba(255,255,255,0.65); text-decoration: none;
     font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--white); }
   /* ── HERO ── */
   #home {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 5% 8%;
+    min-height: 88vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 72px 5% 6%;
     position: relative;
     overflow: hidden;
     background: var(--black);
@@ -652,35 +652,36 @@
         <span class="contact-detail-val">partnering@htrconsultingllc.com</span>
       </div>
       <div class="contact-detail">
-        <span class="contact-detail-label">Offices</span>
+        <span class="contact-detail-label">Based</span>
         <span class="contact-detail-val">United States &amp; United Kingdom</span>
       </div>
       <div class="contact-detail">
         <span class="contact-detail-label">LinkedIn</span>
-        <span class="contact-detail-val">HTR Commodities &amp; Financing Consulting</span>
+        <span class="contact-detail-val"><a href="https://www.linkedin.com/company/97863711/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.25);transition:border-color 0.2s;" onmouseover="this.style.borderColor='#C9A84C'" onmouseout="this.style.borderColor='rgba(255,255,255,0.25)'">HTR Consulting</a></span>
       </div>
     </div>
     <div class="fade-up">
-      <form class="contact-form" onsubmit="return false;">
+      <form class="contact-form" action="https://formspree.io/f/mnjegnlk" method="POST">
+        <input type="hidden" name="_subject" value="New inquiry from HTR Consulting website">
         <div class="form-row">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" placeholder="Your name">
+            <input type="text" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label>Company</label>
-            <input type="text" placeholder="Optional">
+            <input type="text" name="company" placeholder="Optional">
           </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="your@email.com">
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea rows="6" placeholder="How can we help?"></textarea>
+          <textarea rows="6" name="message" placeholder="How can we help?" required></textarea>
         </div>
-        <button class="submit-btn" type="button" onclick="sendEmail()">Send Message</button>
+        <button class="submit-btn" type="submit">Send Message</button>
         <a href="mailto:partnering@htrconsultingllc.com" style="display:block;margin-top:14px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;text-align:center;transition:color 0.2s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">or email us directly: partnering@htrconsultingllc.com</a>
       </form>
     </div>
@@ -704,24 +705,6 @@
   <span>US & UK Operations</span>
 </div>
 <script>
-  function sendEmail() {
-    const name    = document.querySelector('input[placeholder="Your name"]').value.trim();
-    const company = document.querySelector('input[placeholder="Optional"]').value.trim();
-    const email   = document.querySelector('input[type="email"]').value.trim();
-    const message = document.querySelector('textarea').value.trim();
-    if (!name || !email || !message) {
-      alert('Please fill in your name, email, and message before sending.');
-      return;
-    }
-    const subject = encodeURIComponent('HTR Consulting Inquiry' + (company ? ' — ' + company : ''));
-    const body    = encodeURIComponent(
-      'Name: ' + name +
-      (company ? '\nCompany: ' + company : '') +
-      '\nEmail: ' + email +
-      '\n\n' + message
-    );
-    window.location.href = 'mailto:partnering@htrconsultingllc.com?subject=' + subject + '&body=' + body;
-  }
   const bios = [
     {
       name: "Herbert J. Tweddle",
