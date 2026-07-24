@@ -689,6 +689,7 @@
     <div class="fade-up">
       <form class="contact-form" id="contact-form" action="https://formspree.io/f/mnjegnlk" method="POST">
         <input type="hidden" name="_subject" value="New inquiry from HTR Consulting website">
+        <input type="text" name="_gotcha" id="hp-field" style="position:absolute;left:-9999px;top:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div id="form-fields">
           <div class="form-row">
             <div class="form-group">
@@ -788,16 +789,30 @@
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
   const contactForm = document.getElementById('contact-form');
+  const formLoadTime = Date.now();
+  let isSubmitting = false;
   if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
+      if (isSubmitting) return;
       const submitBtn = document.getElementById('submit-btn');
       const errorBox = document.getElementById('form-error');
       errorBox.classList.remove('active');
+
+      const formData = new FormData(contactForm);
+      const honeypotFilled = (formData.get('_gotcha') || '').trim().length > 0;
+      const submittedTooFast = (Date.now() - formLoadTime) < 3000;
+      if (honeypotFilled || submittedTooFast) {
+        // Silently treat as success without sending anywhere — don't tip off bots.
+        document.getElementById('form-fields').style.display = 'none';
+        document.getElementById('form-success').classList.add('active');
+        return;
+      }
+
+      isSubmitting = true;
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
       try {
-        const formData = new FormData(contactForm);
         const airtablePayload = {
           name: formData.get('name') || '',
           company: formData.get('company') || '',
@@ -827,6 +842,7 @@
         errorBox.classList.add('active');
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send Message';
+        isSubmitting = false;
       }
     });
   }
