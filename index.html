@@ -797,12 +797,27 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
       try {
-        const response = await fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
+        const formData = new FormData(contactForm);
+        const airtablePayload = {
+          name: formData.get('name') || '',
+          company: formData.get('company') || '',
+          email: formData.get('email') || '',
+          message: formData.get('message') || ''
+        };
+        const [formspreeResult] = await Promise.allSettled([
+          fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          }),
+          fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/appIbU4xwnqjKbhO3/wflneUUeaA4U5PSfj/wtrRut4GM1g3JCW4O', {
+            method: 'POST',
+            body: JSON.stringify(airtablePayload),
+            headers: { 'Content-Type': 'application/json' }
+          })
+        ]);
+        const response = formspreeResult.status === 'fulfilled' ? formspreeResult.value : null;
+        if (response && response.ok) {
           document.getElementById('form-fields').style.display = 'none';
           document.getElementById('form-success').classList.add('active');
         } else {
