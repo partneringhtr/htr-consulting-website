@@ -812,8 +812,9 @@
           }),
           fetch('https://hooks.airtable.com/workflows/v1/genericWebhook/appIbU4xwnqjKbhO3/wflneUUeaA4U5PSfj/wtrRut4GM1g3JCW4O', {
             method: 'POST',
+            mode: 'no-cors',
             body: JSON.stringify(airtablePayload),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'text/plain' }
           })
         ]);
         const response = formspreeResult.status === 'fulfilled' ? formspreeResult.value : null;
